@@ -16,10 +16,10 @@ class WebhookController < ApplicationController
     replyToken = event["replyToken"]
 
     case event_type
-    when "beacon"
+    when "beacon" then
       input_text = "beacon!"
       output_text = input_text
-    when "message"
+    when "message" then
         input_text = event["message"]["text"]
         output_text = input_text
     end
