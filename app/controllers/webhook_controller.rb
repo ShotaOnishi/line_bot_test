@@ -18,7 +18,6 @@ class WebhookController < ApplicationController
     case event_type
     when "beacon" then
       time = Time.now
-      puts time
       input_text = "beacon"
       output_text = input_text
     when "message" then
