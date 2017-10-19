@@ -57,6 +57,8 @@ gem 'dotenv-rails'
 gem 'faraday'
 gem 'faraday_middleware'
 
+gem 'mechanize'
+
 
 # heroku用
 group :production do
