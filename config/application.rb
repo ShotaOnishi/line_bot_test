@@ -1,4 +1,5 @@
 require_relative 'boot'
+config.time_zone = 'Tokyo'
 
 require 'rails/all'
 

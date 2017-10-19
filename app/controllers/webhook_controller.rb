@@ -17,8 +17,9 @@ class WebhookController < ApplicationController
 
     case event_type
     when "beacon" then
-      input_text = "beacon!"
-      output_text = input_text
+      time = Time.now
+      input_text = time
+      output_text = input_text.to_s
     when "message" then
         input_text = event["message"]["text"]
         output_text = input_text
