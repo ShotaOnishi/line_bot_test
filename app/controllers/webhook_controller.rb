@@ -22,7 +22,7 @@ class WebhookController < ApplicationController
     when "message" then
       time = Time.now.in_time_zone('Tokyo').to_s
       #input_text = event["message"]["text"]
-      input_text = time
+      input_text = Phrase(Random.rand(1 .. 100)).word
       output_text = input_text
     end
 
