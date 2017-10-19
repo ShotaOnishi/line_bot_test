@@ -13,5 +13,3 @@ module LineBotTest
     # -- all .rb files in that directory are automatically loaded.
   end
 end
-
-config.time_zone = 'Tokyo'
