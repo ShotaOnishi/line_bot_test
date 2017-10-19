@@ -20,8 +20,9 @@ class WebhookController < ApplicationController
       input_text = "beacon"
       output_text = input_text
     when "message" then
-      puts Time.now.in_time_zone('Tokyo').to_s
-      input_text = event["message"]["text"]
+      time = Time.now.in_time_zone('Tokyo').to_s
+      #input_text = event["message"]["text"]
+      input_text = time
       output_text = input_text
     end
 
