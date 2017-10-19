@@ -20,6 +20,7 @@ class WebhookController < ApplicationController
       input_text = "beacon"
       output_text = input_text
     when "message" then
+      puts Time.now.to_s
       input_text = event["message"]["text"]
       output_text = input_text
     end
