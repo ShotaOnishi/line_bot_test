@@ -17,34 +17,33 @@ class WebhookController < ApplicationController
 
     case event_type
     when "beacon" then
-      time = Time.now
       input_text = "beacon"
       output_text = input_text
     when "message" then
-        input_text = event["message"]["text"]
-        output_text = input_text
+      input_text = event["message"]["text"]
+      output_text = input_text
     end
 
 
-  client = LineClient.new(CHANNEL_ACCESS_TOKEN, OUTBOUND_PROXY)
-  res = client.reply(replyToken, output_text)
+    client = LineClient.new(CHANNEL_ACCESS_TOKEN, OUTBOUND_PROXY)
+    res = client.reply(replyToken, output_text)
+    
+    if res.status == 200
+      logger.info({success: res}).
+    else
+      logger.info({fail: res})
+    end
 
-  if res.status == 200
-    logger.info({success: res}).
-  else
-    logger.info({fail: res})
+    render :nothing => true, status: :ok
   end
 
-  render :nothing => true, status: :ok
-end
-
-private
-# verify access from LINE
-def is_validate_signature
-  signature = request.headers["X-LINE-Signature"]
-  http_request_body = request.raw_post
-  hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, CHANNEL_SECRET, http_request_body)
-  signature_answer = Base64.strict_encode64(hash)
-  signature == signature_answer
-end
+  private
+  # verify access from LINE
+  def is_validate_signature
+    signature = request.headers["X-LINE-Signature"]
+    http_request_body = request.raw_post
+    hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, CHANNEL_SECRET, http_request_body)
+    signature_answer = Base64.strict_encode64(hash)
+    signature == signature_answer
+  end
 end
