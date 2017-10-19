@@ -18,8 +18,9 @@ class WebhookController < ApplicationController
     case event_type
     when "beacon" then
       time = Time.now
-      input_text = time
-      output_text = input_text.to_s
+      puts time
+      input_text = "beacon"
+      output_text = input_text
     when "message" then
         input_text = event["message"]["text"]
         output_text = input_text
@@ -30,7 +31,7 @@ class WebhookController < ApplicationController
   res = client.reply(replyToken, output_text)
 
   if res.status == 200
-    logger.info({success: res})
+    logger.info({success: res}).
   else
     logger.info({fail: res})
   end
