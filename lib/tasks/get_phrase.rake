@@ -9,8 +9,8 @@ namespace :get_phrase do
     elements.each do |ele|
       phrase = Phrase.new
       # phrase.word = ele.inner_text
-      # phrase.save
       phrase.word = ele.inner_text
+      phrase.save
     end
 
   end
