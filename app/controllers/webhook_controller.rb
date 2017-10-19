@@ -19,11 +19,9 @@ class WebhookController < ApplicationController
     when "beacon"
       input_text = "beacon!"
       output_text = input_text
-    end
-
     when "message"
-      input_text = event["message"]["text"]
-      output_text = input_text
+        input_text = event["message"]["text"]
+        output_text = input_text
     end
 
 
