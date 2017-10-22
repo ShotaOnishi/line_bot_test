@@ -48,7 +48,7 @@ class WebhookController < ApplicationController
       {
         "type" => "text" ,
         "text" => text
-      },
+      }
 
     ]
 
