@@ -25,7 +25,7 @@ class LineClient
     res
   end
 
-  def reply(replyToken, text)
+  def reply_single(replyToken, text)
 
     messages = [
       {

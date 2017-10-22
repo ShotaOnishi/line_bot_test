@@ -27,7 +27,7 @@ class WebhookController < ApplicationController
 
 
     client = LineClient.new(CHANNEL_ACCESS_TOKEN, OUTBOUND_PROXY)
-    res = client.reply(replyToken, output_text)
+    res = reply(replyToken, output_text)
 
     if res.status == 200
       logger.info({success: res})
@@ -37,6 +37,28 @@ class WebhookController < ApplicationController
 
     render :nothing => true, status: :ok
   end
+
+  def reply(replyToken, text)
+
+    messages = [
+      {
+        "type" => "text" ,
+        "text" => text
+      },
+      {
+        "type" => "text" ,
+        "text" => text
+      },
+
+    ]
+
+    body = {
+      "replyToken" => replyToken ,
+      "messages" => messages
+    }
+    post('/v2/bot/message/reply', body.to_json)
+  end
+
 
   private
   # verify access from LINE
