@@ -15,10 +15,12 @@ class WebhookController < ApplicationController
     event_type = event["type"]
     replyToken = event["replyToken"]
 
+    flug = 0;
     case event_type
     when "beacon" then
       # input_text = Phrase.where( 'id >= ?', rand(Phrase.first.id..Phrase.last.id) ).first.word
-      output_text = "美人スポット接近中！"
+      flug = 0;
+      output_text = "美人スポット接近中！(http://hacklog.jp/works/51384)"
     when "message" then
       time = Time.now.in_time_zone('Tokyo').to_s
       input_text = event["message"]["text"]
