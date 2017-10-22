@@ -19,9 +19,10 @@ class WebhookController < ApplicationController
     case event_type
     when "beacon" then
       # input_text = Phrase.where( 'id >= ?', rand(Phrase.first.id..Phrase.last.id) ).first.word
-      flug = 0;
+      flug = 1;
       output_text = "美人スポット接近中！(http://hacklog.jp/works/51384)"
     when "message" then
+      flug = 2;
       time = Time.now.in_time_zone('Tokyo').to_s
       input_text = event["message"]["text"]
       output_text = input_text
@@ -30,6 +31,10 @@ class WebhookController < ApplicationController
 
     client = LineClient.new(CHANNEL_ACCESS_TOKEN, OUTBOUND_PROXY)
     res = client.reply(replyToken, output_text)
+    if(flug==2){
+      client = LineClient.new(CHANNEL_ACCESS_TOKEN, OUTBOUND_PROXY)
+      res = client.reply(replyToken, output_text)
+    }
 
     if res.status == 200
       logger.info({success: res})
