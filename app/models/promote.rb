@@ -1,0 +1,2 @@
+class Promote < ApplicationRecord
+end
