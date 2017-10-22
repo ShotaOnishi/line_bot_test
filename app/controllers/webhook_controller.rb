@@ -20,7 +20,7 @@ class WebhookController < ApplicationController
     when "beacon" then
       # input_text = Phrase.where( 'id >= ?', rand(Phrase.first.id..Phrase.last.id) ).first.word
       flug = 1;
-      output_text = "美人スポット接近中！(http://hacklog.jp/works/51384)"
+      output_text = "美人接近中！！(http://hacklog.jp/works/51384)"
     when "message" then
       flug = 2;
       time = Time.now.in_time_zone('Tokyo').to_s
